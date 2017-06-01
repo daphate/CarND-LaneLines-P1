@@ -18,17 +18,16 @@ The goals / steps of this project are the following:
 
 My pipeline consisted of 5 steps. 
 
-First, I desided to use grayscale as it was prompted by cource, but later i've added HSV conversion and masking routine.
+First, I desided to use grayscale as it was prompted by the course, but later I've added HSV conversion and masking routine.
 I subsecuently use hsv masking, gaussian blur with kernel of 3, canny with thresholds of 50 and 150.
-These transformations are done by image_preprocess_hsv function.
+These transformations are made by image_preprocess_hsv function.
 
-I've created helper class Line, which computes slope and intercept, x coord by y and vice versa and can update line coords 
-for future use when adopting lane lines to vanishing point.
+I've created helper class "Line", which can compute slope and intercept, find x coord by y and vice versa, and can update line coords for future use when adopting lane lines to vanishing point.
 
-I've created the first pipeline for checking on images, which finds hough lines and draws it in some kind of thumbnail.
+I've created the first pipeline for checking on images, it finds hough lines and draws them on some kind of thumbnail.
 
-Then i've created a smarter pipeline, which inits lines as instances of Line class and filters almost horisontal and
-almost vertical outliers, computes median slopes and intercepts for all candidates to be segments of the lane line,
+Then I've created a smarter pipeline, which inits lines as instances of Line class and filters almost horisontal and
+almost vertical outliers. Then it computes median slopes and intercepts for all candidates to be segments of the lane line,
 and computes left and right lane lines. Then it finds the vanishing point as inersection of left and right lane lines
 and updates their coordinates respectively to appear lower than the vanishing point.
 
@@ -40,11 +39,10 @@ One potential shortcoming would be because my knowledge of python doesn't allow 
 compare new candidate lane lines to previously found, so for now it cannot filter lane line candidates that are too far from
 previously computed lane lines. So the filter works ok on very simple scenes, but will fail on challenge.
 
-Another shortcoming is that the preprocessing will for sure fail on different lighting and wheather and road painting color 
+Another shortcoming is that the preprocessing will for sure fail on different lighting, wheather and road painting color 
 conditions because it only can mask yellow and white lines.
 
-Also it won't work well on curvy lane lines, it cannot predict changes of lane line curvature, will fail if we'll try to switch the lane
-and many more.
+Also it won't work well on curvy lane lines, it cannot predict changes of lane line curvature, will fail if we'll try to switch the lane. And many more.
 
 
 ### 3. Suggest possible improvements to your pipeline
